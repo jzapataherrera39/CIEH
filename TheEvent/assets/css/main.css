@@ -283,6 +283,14 @@ h6 {
 .scrolled .header {
   box-shadow: 0px 0 18px rgba(0, 0, 0, 0.1);
 }
+.small-logo {
+  max-width: 60px; /* Adjust as needed */
+  max-height: 60px; /* Adjust as needed */
+  object-fit: contain; 
+  aspect-ratio: 1; 
+  display: block; 
+  margin: 0 auto;  /* Maintain aspect ratio */
+}
 
 /* Global Header on Scroll
 ------------------------------*/
