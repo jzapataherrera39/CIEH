@@ -1459,6 +1459,8 @@ section,
   box-shadow: 0 3px 20px -2px rgba(0, 0, 0, 0.1);
   padding-bottom: 30px;
   position: relative;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .buy-tickets .pricing-item h3 {
