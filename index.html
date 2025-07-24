@@ -60,6 +60,7 @@
           <li><a href="#speakers">Congresos</a></li>
           <li><a href="#schedule">Cronograma</a></li>
           <li><a href="#venue">Unicor</a></li>
+          <li><a href="#certificates">Certificados</a></li> </ul>
 
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
@@ -559,6 +560,38 @@
         </div>
 
       </section><!-- /Venue Section -->
+
+      <section id="hotels" class="hotels section">
+      //</section><section id="certificates" class="certificates section light-background">
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Descarga tu Certificado</h2>
+        <p>Ingresa tu número de identificación o correo electrónico para descargar tu certificado de participación o de ponente.</p>
+        <p>(se puede obtener posteriormente en el evento)</p>
+      </div><div class="container" data-aos="fade-up" data-aos-delay="100">
+        <div class="row justify-content-center">
+          <div class="col-lg-6">
+            <form action="/generarCertificado" method="post" class="php-email-form">
+              <div class="row gy-4">
+                <div class="col-md-12">
+                  <input type="text" name="identificacion" class="form-control" placeholder="Número de Identificación o Correo Electrónico" required>
+                </div>
+                <div class="col-md-12">
+                  <select name="tipoCertificado" class="form-control" required>
+                    <option value="">Selecciona el tipo de certificado</option>
+                    <option value="participante">Participante</option>
+                    <option value="ponente">Ponente</option>
+                  </select>
+                </div>
+                <div class="col-md-12 text-center">
+                  <button type="submit">Buscar y Descargar Certificado</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section><section id="gallery" class="gallery section">
+      </section>
 
       <!-- Hotels Section -->
       <section id="hotels" class="hotels section">
