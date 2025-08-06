@@ -1,7 +1,7 @@
 import qrcode
 
 # Dirección web
-url = "http://cieh.unicordoba.edu.co"
+url = "https://forms.gle/855XN1QBb7PY7whu7"
 
 # Crear objeto QR
 qr = qrcode.QRCode(
@@ -19,6 +19,6 @@ qr.make(fit=True)
 img = qr.make_image(fill_color="black", back_color="white")
 
 # Guardar imagen
-img.save("qr_cieh.png")
+img.save("inscripcion.png")
 
 print("✅ Código QR generado y guardado como 'qr_cieh.png'")
