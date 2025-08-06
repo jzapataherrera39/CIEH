@@ -1697,4 +1697,9 @@ section,
 --------------------------------------------------------------*/
 .starter-section {
   /* Add your styles here */
+
+}
+.navmenu ul li a.active {
+  color: #059652; /* azul como ejemplo */
+  font-weight: bold;
 }
