@@ -28,6 +28,8 @@
 
   <!-- Main CSS File -->
   <link href="assets/css/main.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
 
   <!-- =======================================================
   * Template Name: CIEH_2025
@@ -570,10 +572,10 @@
 
           <div class="row g-0">
             <div class="col-lg-6 venue-map">
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3515.5346001227254!2d-75.86125615156591!3d8.789870440260966!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e5a2f072fa97a27%3A0x9cfe8a075a105e49!2sB13%20Facultad%20de%20Educaci%C3%B3n%20y%20Ciencias%20Humanas!5e1!3m2!1ses!2sco!4v1752193590560!5m2!1ses!2sco"
-                width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
-                referrerpolicy="no-referrer-when-downgrade"></iframe>
+              <div id="map" style="height: 450px;"></div>
+              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#mapModal">
+                Ver mapa ampliado
+              </button>
             </div>
 
             <div class="col-lg-6 venue-info"
@@ -663,6 +665,19 @@
         </div>
 
       </section>
+<div class="modal fade" id="mapModal" tabindex="-1" aria-labelledby="mapModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="mapModalLabel">Mapa</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div id="modal-map" style="height: 500px;"></div>
+      </div>
+    </div>
+  </div>
+</div>
      
 
       <!-- Hotels Section -->
@@ -1144,6 +1159,47 @@
 
       <!-- Main JS File -->
       <script src="assets/js/main.js" defer></script>
+      <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+      <script>
+        var locations = [
+          { lat: 8.789870440260966, lng: -75.86125615156591, name: 'Facultad de Educación y Ciencias Humanas' },
+          { lat: 8.789561283927863, lng: -75.85998648141613, name: 'Bloque 12 de Practicas Musicales' },
+          { lat: 8.790555555555555, lng: -75.86216666666667, name: 'Auditorio de biblioteca' },
+          { lat: 8.791238928173795, lng: -75.8624299203581, name: 'Auditorio Aspu' },
+          { lat: 8.79011111111111, lng: -75.85744444444445, name: 'Centro cultural Cientifico para los valles del Sinu, Sam Jorge y sabanas de Sucre' }
+        ];
+
+        var map = L.map('map').setView([8.790, -75.860], 15);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        locations.forEach(function(location, index) {
+          var marker = L.marker([location.lat, location.lng]).addTo(map).bindPopup(location.name);
+          if (index === 0) {
+            marker.openPopup();
+          }
+        });
+
+        var mapModal = document.getElementById('mapModal');
+        var modalMap;
+        mapModal.addEventListener('shown.bs.modal', function () {
+          if (!modalMap) {
+            modalMap = L.map('modal-map').setView([8.790, -75.860], 15);
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+              attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(modalMap);
+
+            locations.forEach(function(location) {
+              L.marker([location.lat, location.lng]).addTo(modalMap).bindPopup(location.name).openPopup();
+            });
+          }
+          setTimeout(function () {
+            modalMap.invalidateSize();
+          }, 10);
+        });
+      </script>
 
 
 
